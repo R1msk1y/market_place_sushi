@@ -1,6 +1,7 @@
 import Card from "./components/Card/Card";
 import React, { useState } from "react";
 import "./styles/main.scss";
+import CartItem from "./components/CartItem/CartItem";
 const productsArr = [
   {
     id: 1,
@@ -33,8 +34,15 @@ const productsArr = [
 ];
 
 function App() {
-  const [counter, setCounter] = useState(0);
-
+  const [cartArr, setCartArr] = useState([]);
+  const addToCart = (curObj) => {
+    console.log(curObj);
+    if (cartArr.find((obj) => obj.id === curObj.id)) {
+      setCartArr(cartArr.filter((item) => item.id !== curObj.id));
+    } else {
+      setCartArr([...cartArr, curObj]);
+    }
+  };
   return (
     <div classNameName="App">
       <header className="header">
@@ -50,7 +58,14 @@ function App() {
           <div className="col-md-8">
             <div className="row">
               {productsArr.map((obj) => {
-                return <Card {...obj} />;
+                return (
+                  <Card
+                    key={obj.id}
+                    addToCart={addToCart}
+                    {...obj}
+                    fullObj={obj}
+                  />
+                );
               })}
             </div>
           </div>
@@ -69,39 +84,9 @@ function App() {
                 {/* <!-- cart-wrapper --> */}
                 <div className="cart-wrapper">
                   {/* <!-- Cart item --> */}
-                  <div className="cart-item" data-id="02">
-                    <div className="cart-item__top">
-                      <div className="cart-item__img">
-                        <img src="img/roll/california-tempura.jpg" alt="" />
-                      </div>
-                      <div className="cart-item__desc">
-                        <div className="cart-item__title">
-                          Калифорния темпура
-                        </div>
-                        <div className="cart-item__weight">6 шт. / 205г.</div>
-
-                        {/* <!-- cart-item__details --> */}
-                        <div className="cart-item__details">
-                          <div className="items items--small counter-wrapper">
-                            <div className="items__control" data-action="minus">
-                              -
-                            </div>
-                            <div className="items__current" data-counter="">
-                              1
-                            </div>
-                            <div className="items__control" data-action="plus">
-                              +
-                            </div>
-                          </div>
-
-                          <div className="price">
-                            <div className="price__currency">250 ₽</div>
-                          </div>
-                        </div>
-                        {/* <!-- // cart-item__details --> */}
-                      </div>
-                    </div>
-                  </div>
+                  {cartArr.map((obj) => {
+                    return <CartItem {...obj} />;
+                  })}
                   {/* <!-- // Cart item --> */}
                 </div>
                 {/* <!-- // cart-wrapper --> */}

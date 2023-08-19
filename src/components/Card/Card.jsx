@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-function Card({ id, title, imgUrl, price, weight }) {
-  const [counter, setCounter] = useState(0);
+function Card({ id, title, imgUrl, price, weight, addToCart, fullObj }) {
+  const [counter, setCounter] = useState(1);
   const counterForPlus = () => {
     setCounter(counter + 1);
   };
@@ -47,12 +47,15 @@ function Card({ id, title, imgUrl, price, weight }) {
             </div>
 
             <div className="price">
-              <div className="price__weight">{weight}г.</div>
-              <div className="price__currency">{price} ₽</div>
+              <div className="price__weight">{weight * counter}г.</div>
+              <div className="price__currency">{price * counter} ₽</div>
             </div>
           </div>
 
           <button
+            onClick={() => {
+              addToCart(fullObj);
+            }}
             data-cart
             type="button"
             className="btn btn-block btn-outline-warning"
