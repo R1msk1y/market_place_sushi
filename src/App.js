@@ -1,246 +1,101 @@
-import logo from "./logo.svg";
+import Card from "./components/Card/Card";
+import React, { useState } from "react";
 import "./styles/main.scss";
+const productsArr = [
+  {
+    id: 1,
+    title: "Калефорния хит ролл",
+    imgUrl: "img/roll/california-hit.jpg",
+    price: 300,
+    weight: 180,
+  },
+  {
+    id: 2,
+    title: "Калифорния темпура",
+    imgUrl: "img/roll/california-tempura.jpg",
+    price: 250,
+    weight: 205,
+  },
+  {
+    id: 3,
+    title: "Запеченый ролл «Калифорния»",
+    imgUrl: "img/roll/zapech-california.jpg",
+    price: 400,
+    weight: 150,
+  },
+  {
+    id: 4,
+    title: "Филадельфия",
+    imgUrl: "img/roll/philadelphia.jpg",
+    price: 350,
+    weight: 190,
+  },
+];
 
 function App() {
+  const [counter, setCounter] = useState(0);
+
   return (
-    <div className="App">
-      <header class="header">
-        <div class="container text-center">
+    <div classNameName="App">
+      <header className="header">
+        <div className="container text-center">
           <img src="img/logo/logo.svg" width="92" alt="Суши и пицца" />
-          <div class="display-4">Доставка роллов</div>
-          <p class="lead">Оперативно и вкусно</p>
+          <div className="display-4">Доставка роллов</div>
+          <p className="lead">Оперативно и вкусно</p>
         </div>
       </header>
 
-      <div class="container mb-5">
-        <div class="row">
-          <div class="col-md-8">
-            <div class="row">
-              {/* <!-- Ролл --> */}
-              <div class="col-md-6">
-                <div class="card mb-4" data-id="01">
-                  <img
-                    class="product-img"
-                    src="img/roll/philadelphia.jpg"
-                    alt=""
-                  />
-                  <div class="card-body text-center">
-                    <h4 class="item-title">Филадельфия хит ролл</h4>
-                    <p>
-                      <small data-items-in-box class="text-muted">
-                        6 шт.
-                      </small>
-                    </p>
-
-                    <div class="details-wrapper">
-                      <div class="items counter-wrapper">
-                        <div class="items__control" data-action="minus">
-                          -
-                        </div>
-                        <div class="items__current" data-counter>
-                          1
-                        </div>
-                        <div class="items__control" data-action="plus">
-                          +
-                        </div>
-                      </div>
-
-                      <div class="price">
-                        <div class="price__weight">180г.</div>
-                        <div class="price__currency">300 ₽</div>
-                      </div>
-                    </div>
-
-                    <button
-                      data-cart
-                      type="button"
-                      class="btn btn-block btn-outline-warning"
-                    >
-                      + в корзину
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {/* <!-- // Ролл --> */}
-
-              {/* <!-- Ролл --> */}
-              <div class="col-md-6">
-                <div class="card mb-4" data-id="02">
-                  <img
-                    class="product-img"
-                    src="img/roll/california-tempura.jpg"
-                    alt=""
-                  />
-                  <div class="card-body text-center">
-                    <h4 class="item-title">Калифорния темпура</h4>
-                    <p>
-                      <small data-items-in-box class="text-muted">
-                        6 шт.
-                      </small>
-                    </p>
-
-                    <div class="details-wrapper">
-                      <div class="items counter-wrapper">
-                        <div class="items__control" data-action="minus">
-                          -
-                        </div>
-                        <div class="items__current" data-counter>
-                          1
-                        </div>
-                        <div class="items__control" data-action="plus">
-                          +
-                        </div>
-                      </div>
-
-                      <div class="price">
-                        <div class="price__weight">205г.</div>
-                        <div class="price__currency">250 ₽</div>
-                      </div>
-                    </div>
-
-                    <button
-                      data-cart
-                      type="button"
-                      class="btn btn-block btn-outline-warning"
-                    >
-                      + в корзину
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {/* <!-- // Ролл --> */}
-
-              {/* <!-- Ролл --> */}
-              <div class="col-md-6">
-                <div class="card mb-4" data-id="03">
-                  <img
-                    class="product-img"
-                    src="img/roll/zapech-california.jpg"
-                    alt=""
-                  />
-                  <div class="card-body text-center">
-                    <h4 class="item-title">Запеченый ролл «Калифорния»</h4>
-                    <p>
-                      <small data-items-in-box class="text-muted">
-                        6 шт.
-                      </small>
-                    </p>
-
-                    <div class="details-wrapper">
-                      <div class="items counter-wrapper">
-                        <div class="items__control" data-action="minus">
-                          -
-                        </div>
-                        <div class="items__current" data-counter>
-                          1
-                        </div>
-                        <div class="items__control" data-action="plus">
-                          +
-                        </div>
-                      </div>
-
-                      <div class="price">
-                        <div class="price__weight">182г.</div>
-                        <div class="price__currency">230 ₽</div>
-                      </div>
-                    </div>
-
-                    <button
-                      data-cart
-                      type="button"
-                      class="btn btn-block btn-outline-warning"
-                    >
-                      + в корзину
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {/* <!-- // Ролл --> */}
-
-              {/* <!-- Ролл --> */}
-              <div class="col-md-6">
-                <div class="card mb-4" data-id="04">
-                  <img
-                    class="product-img"
-                    src="img/roll/philadelphia.jpg"
-                    alt=""
-                  />
-                  <div class="card-body text-center">
-                    <h4 class="item-title">Филадельфия</h4>
-                    <p>
-                      <small data-items-in-box class="text-muted">
-                        6 шт.
-                      </small>
-                    </p>
-
-                    <div class="details-wrapper">
-                      <div class="items counter-wrapper">
-                        <div class="items__control" data-action="minus">
-                          -
-                        </div>
-                        <div class="items__current" data-counter>
-                          1
-                        </div>
-                        <div class="items__control" data-action="plus">
-                          +
-                        </div>
-                      </div>
-
-                      <div class="price">
-                        <div class="price__weight">230г.</div>
-                        <div class="price__currency">320 ₽</div>
-                      </div>
-                    </div>
-
-                    <button
-                      data-cart
-                      type="button"
-                      class="btn btn-block btn-outline-warning"
-                    >
-                      + в корзину
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {/* <!-- // Ролл --> */}
+      <div className="container mb-5">
+        <div className="row">
+          <div className="col-md-8">
+            <div className="row">
+              {productsArr.map((obj) => {
+                return <Card {...obj} />;
+              })}
             </div>
           </div>
-          <div class="col-md-4">
+          <div className="col-md-4">
             {/* <!-- Корзина --> */}
-            <div class="card mb-4">
-              <div class="card-body">
-                <h5 class="card-title">Ваш заказ</h5>
-                <div data-cart-empty class="alert alert-secondary" role="alert">
+            <div className="card mb-4">
+              <div className="card-body">
+                <h5 className="card-title">Ваш заказ</h5>
+                <div
+                  data-cart-empty
+                  className="alert alert-secondary"
+                  role="alert"
+                >
                   Корзина пуста
                 </div>
                 {/* <!-- cart-wrapper --> */}
-                <div class="cart-wrapper">
+                <div className="cart-wrapper">
                   {/* <!-- Cart item --> */}
-                  <div class="cart-item" data-id="02">
-                    <div class="cart-item__top">
-                      <div class="cart-item__img">
+                  <div className="cart-item" data-id="02">
+                    <div className="cart-item__top">
+                      <div className="cart-item__img">
                         <img src="img/roll/california-tempura.jpg" alt="" />
                       </div>
-                      <div class="cart-item__desc">
-                        <div class="cart-item__title">Калифорния темпура</div>
-                        <div class="cart-item__weight">6 шт. / 205г.</div>
+                      <div className="cart-item__desc">
+                        <div className="cart-item__title">
+                          Калифорния темпура
+                        </div>
+                        <div className="cart-item__weight">6 шт. / 205г.</div>
 
                         {/* <!-- cart-item__details --> */}
-                        <div class="cart-item__details">
-                          <div class="items items--small counter-wrapper">
-                            <div class="items__control" data-action="minus">
+                        <div className="cart-item__details">
+                          <div className="items items--small counter-wrapper">
+                            <div className="items__control" data-action="minus">
                               -
                             </div>
-                            <div class="items__current" data-counter="">
+                            <div className="items__current" data-counter="">
                               1
                             </div>
-                            <div class="items__control" data-action="plus">
+                            <div className="items__control" data-action="plus">
                               +
                             </div>
                           </div>
 
-                          <div class="price">
-                            <div class="price__currency">250 ₽</div>
+                          <div className="price">
+                            <div className="price__currency">250 ₽</div>
                           </div>
                         </div>
                         {/* <!-- // cart-item__details --> */}
@@ -252,32 +107,32 @@ function App() {
                 {/* <!-- // cart-wrapper --> */}
 
                 {/* <!-- Стоимость заказа --> */}
-                <div class="cart-total">
+                <div className="cart-total">
                   <p>
-                    <span class="h5">Доставка:</span>{" "}
-                    <span class="delivery-cost free">бесплатно</span>{" "}
+                    <span className="h5">Доставка:</span>{" "}
+                    <span className="delivery-cost free">бесплатно</span>{" "}
                   </p>
                   <p>
-                    <span class="h5">Итого:</span>{" "}
-                    <span class="total-price">330</span>{" "}
-                    <span class="rouble">₽</span>
+                    <span className="h5">Итого:</span>{" "}
+                    <span className="total-price">330</span>{" "}
+                    <span className="rouble">₽</span>
                   </p>
                 </div>
                 {/* <!-- // Стоимость заказа --> */}
               </div>
 
               {/* <!-- Оформить заказ --> */}
-              <div id="order-form" class="card-body border-top">
-                <h5 class="card-title">Оформить заказ</h5>
+              <div id="order-form" className="card-body border-top">
+                <h5 className="card-title">Оформить заказ</h5>
                 <form>
-                  <div class="form-group">
+                  <div className="form-group">
                     <input
                       type="text"
-                      class="form-control"
+                      className="form-control"
                       placeholder="Ваш номер телефона"
                     />
                   </div>
-                  <button type="submit" class="btn btn-primary">
+                  <button type="submit" className="btn btn-primary">
                     Заказать
                   </button>
                 </form>
