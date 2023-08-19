@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 function Card({ id, title, imgUrl, price, weight, addToCart, fullObj }) {
+  const [curPrice, setCurPrice] = useState(price);
   const [counter, setCounter] = useState(1);
   const counterForPlus = () => {
     setCounter(counter + 1);
@@ -54,7 +55,14 @@ function Card({ id, title, imgUrl, price, weight, addToCart, fullObj }) {
 
           <button
             onClick={() => {
-              addToCart(fullObj);
+              addToCart({
+                id: id,
+                title: title,
+                imgUrl: imgUrl,
+                price: price,
+                weight: weight,
+                counter: counter,
+              });
             }}
             data-cart
             type="button"

@@ -1,6 +1,6 @@
 import React from "react";
 
-function CartItem({ id, title, imgUrl, price, weight }) {
+function CartItem({ id, title, imgUrl, price, weight, counter }) {
   return (
     <div className="cart-item" data-id="02">
       <div className="cart-item__top">
@@ -18,7 +18,7 @@ function CartItem({ id, title, imgUrl, price, weight }) {
                 -
               </div>
               <div className="items__current" data-counter="">
-                1
+                {counter}
               </div>
               <div className="items__control" data-action="plus">
                 +
@@ -26,7 +26,7 @@ function CartItem({ id, title, imgUrl, price, weight }) {
             </div>
 
             <div className="price">
-              <div className="price__currency">{price} ₽</div>
+              <div className="price__currency">{price * counter} ₽</div>
             </div>
           </div>
           {/* <!-- // cart-item__details --> */}
