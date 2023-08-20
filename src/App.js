@@ -36,13 +36,18 @@ const productsArr = [
 function App() {
   const [cartArr, setCartArr] = useState([]);
 
-  const addToCart = (curObj, curPrice) => {
+  const addToCart = (curObj, setCounter, setTest, test) => {
     if (cartArr.find((obj) => obj.id === curObj.id)) {
       // setCartArr(cartArr.filter((item) => item.id !== curObj.id));
     } else {
       setCartArr([...cartArr, curObj]);
     }
+
+    // setCurPrice(curObj.price);
+    setCounter(1);
+    setTest(true);
   };
+
   return (
     <div classNameName="App">
       <header className="header">
@@ -88,8 +93,7 @@ function App() {
                 <div className="cart-wrapper">
                   {/* <!-- Cart item --> */}
                   {cartArr.map((obj) => {
-                    console.log(obj);
-                    return <CartItem key={obj.id} {...obj} />;
+                    return <CartItem arr={cartArr} key={obj.id} {...obj} />;
                   })}
                   {/* <!-- // Cart item --> */}
                 </div>

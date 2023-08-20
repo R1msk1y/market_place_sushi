@@ -2,6 +2,7 @@ import React, { useState } from "react";
 function Card({ id, title, imgUrl, price, weight, addToCart, fullObj }) {
   const [curPrice, setCurPrice] = useState(price);
   const [counter, setCounter] = useState(1);
+  const [test, setTest] = useState(false);
   const counterForPlus = () => {
     setCounter(counter + 1);
   };
@@ -10,6 +11,7 @@ function Card({ id, title, imgUrl, price, weight, addToCart, fullObj }) {
       setCounter(counter - 1);
     }
   };
+
   return (
     <div className="col-md-6">
       <div className="card mb-4" data-id="01">
@@ -49,27 +51,57 @@ function Card({ id, title, imgUrl, price, weight, addToCart, fullObj }) {
 
             <div className="price">
               <div className="price__weight">{weight * counter}г.</div>
-              <div className="price__currency">{price * counter} ₽</div>
+              <div className="price__currency">{curPrice * counter}₽</div>
             </div>
           </div>
-
-          <button
-            onClick={() => {
-              addToCart({
-                id: id,
-                title: title,
-                imgUrl: imgUrl,
-                price: price,
-                weight: weight,
-                counter: counter,
-              });
-            }}
-            data-cart
-            type="button"
-            className="btn btn-block btn-outline-warning"
-          >
-            + в корзину
-          </button>
+          {test ? (
+            <button
+              disabled
+              onClick={() => {
+                addToCart(
+                  {
+                    id: id,
+                    title: title,
+                    imgUrl: imgUrl,
+                    price: price,
+                    weight: weight,
+                    counter: counter,
+                  },
+                  setCounter,
+                  setTest,
+                  test
+                );
+              }}
+              data-cart
+              type="button"
+              className="btn btn-block btn-outline-warning"
+            >
+              {test ? `Товар добавлен ` : "+ в корзину"}
+            </button>
+          ) : (
+            <button
+              onClick={() => {
+                addToCart(
+                  {
+                    id: id,
+                    title: title,
+                    imgUrl: imgUrl,
+                    price: price,
+                    weight: weight,
+                    counter: counter,
+                  },
+                  setCounter,
+                  setTest,
+                  test
+                );
+              }}
+              data-cart
+              type="button"
+              className="btn btn-block btn-outline-warning"
+            >
+              {test ? `Товар добавлен ` : "+ в корзину"}
+            </button>
+          )}
         </div>
       </div>
     </div>

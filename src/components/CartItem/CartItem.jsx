@@ -1,6 +1,18 @@
-import React from "react";
+import { useState } from "react";
 
-function CartItem({ id, title, imgUrl, price, weight, counter }) {
+function CartItem({ id, title, imgUrl, price, weight, counter, arr }) {
+  const [itemCounter, setItemCounter] = useState(counter);
+  const counterForPlus = () => {
+    setItemCounter(itemCounter + 1);
+  };
+  const counterForMinus = () => {
+    if (itemCounter > 1) {
+      setItemCounter(itemCounter - 1);
+    }
+  };
+
+  const totalPrice = arr.reduce((sum, obj) => obj.price + sum, 0);
+
   return (
     <div className="cart-item" data-id="02">
       <div className="cart-item__top">
@@ -14,19 +26,31 @@ function CartItem({ id, title, imgUrl, price, weight, counter }) {
           {/* <!-- cart-item__details --> */}
           <div className="cart-item__details">
             <div className="items items--small counter-wrapper">
-              <div className="items__control" data-action="minus">
+              <div
+                onClick={() => {
+                  counterForMinus();
+                }}
+                className="items__control"
+                data-action="minus"
+              >
                 -
               </div>
               <div className="items__current" data-counter="">
-                {counter}
+                {itemCounter}
               </div>
-              <div className="items__control" data-action="plus">
+              <div
+                onClick={() => {
+                  counterForPlus();
+                }}
+                className="items__control"
+                data-action="plus"
+              >
                 +
               </div>
             </div>
 
             <div className="price">
-              <div className="price__currency">{price * counter} ₽</div>
+              <div className="price__currency">{price * itemCounter} ₽</div>
             </div>
           </div>
           {/* <!-- // cart-item__details --> */}
