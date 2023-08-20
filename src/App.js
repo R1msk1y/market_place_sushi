@@ -1,9 +1,10 @@
 import Card from "./components/Card/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./context";
 import CartItem from "./components/CartItem/CartItem";
 import "./styles/main.scss";
 import AppContext from "./context";
+import axios from "axios";
 const productsArr = [
   {
     id: 1,
@@ -56,12 +57,23 @@ function App() {
   const totalPriceHandle = () => {
     let totalPrice = document.querySelectorAll(".totalPrice");
     let resultArr = Array.from(totalPrice);
-    let ggg = resultArr.map((item) => {
+    let parceResulArr = resultArr.map((item) => {
       return parseInt(item.innerText);
     });
-    let fullPrice = ggg.reduce((sum, num) => num + sum, 0);
+    let fullPrice = parceResulArr.reduce((sum, num) => num + sum, 0);
     setSumm(fullPrice);
   };
+  const [orderArr, setOrderArr] = useState([]);
+  const [status, setStatus] = useState(false);
+  const toDoOrder = () => {
+    setOrderArr([...cartArr, summ]);
+    setStatus(!status);
+    console.log(status);
+  };
+
+  // useEffect(() => {
+  //   axios.post("https://64dbcbc0593f57e435b16da2.mockapi.io/orders", orderArr);
+  // }, [primer]);
   return (
     <div classNameName="App">
       <header id="tr" className="header">
@@ -153,9 +165,15 @@ function App() {
                         placeholder="Ваш номер телефона"
                       />
                     </div>
-                    <button type="submit" className="btn btn-primary">
+                    <a
+                      onClick={() => {
+                        toDoOrder();
+                      }}
+                      type="submit"
+                      className="btn btn-primary"
+                    >
                       Заказать
-                    </button>
+                    </a>
                   </form>
                 </div>
                 {/* <!-- // Оформить заказ --> */}
