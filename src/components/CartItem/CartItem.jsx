@@ -1,6 +1,17 @@
+import React from "react";
 import { useState } from "react";
+import AppContext from "../../context";
 
-function CartItem({ id, title, imgUrl, price, weight, counter, arr }) {
+function CartItem({
+  id,
+  title,
+  imgUrl,
+  price,
+  weight,
+  counter,
+  cartArr,
+  setCartArr,
+}) {
   const [itemCounter, setItemCounter] = useState(counter);
   const counterForPlus = () => {
     setItemCounter(itemCounter + 1);
@@ -10,8 +21,6 @@ function CartItem({ id, title, imgUrl, price, weight, counter, arr }) {
       setItemCounter(itemCounter - 1);
     }
   };
-
-  const totalPrice = arr.reduce((sum, obj) => obj.price + sum, 0);
 
   return (
     <div className="cart-item" data-id="02">
@@ -50,7 +59,9 @@ function CartItem({ id, title, imgUrl, price, weight, counter, arr }) {
             </div>
 
             <div className="price">
-              <div className="price__currency">{price * itemCounter} ₽</div>
+              <div className="price__currency totalPrice">
+                {price * itemCounter} ₽
+              </div>
             </div>
           </div>
           {/* <!-- // cart-item__details --> */}
