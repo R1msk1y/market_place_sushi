@@ -9,7 +9,33 @@ h3,
 h4 {
   font-family: "Merriweather", serif;
 }
-
+.btn-count {
+  background-color: white;
+  color: #eb5a1e;
+  border: 1px solid #eb5a1e;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  &:focus {
+    outline: none;
+  }
+  &:hover {
+    transition: all 0.5s linear;
+    outline: none;
+    background-color: #eb5a1e;
+    color: white;
+  }
+}
+.btn-order {
+  text-align: center;
+  font-size: 18px;
+  background-color: #0f65e6;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+}
 .header {
   padding-top: 50px;
   padding-bottom: 50px;

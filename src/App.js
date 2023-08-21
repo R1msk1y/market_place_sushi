@@ -149,14 +149,14 @@ function App() {
 
                 {/* <!-- Оформить заказ --> */}
                 <div id="order-form" className="card-body border-top">
-                  <h5
+                  <button
                     onClick={() => {
                       totalPriceHandle();
                     }}
-                    className="card-title"
+                    className=" btn-count"
                   >
-                    Оформить заказ
-                  </h5>
+                    Посчитать полную стоимость
+                  </button>
                   <form>
                     <div className="form-group">
                       <input
@@ -165,15 +165,15 @@ function App() {
                         placeholder="Ваш номер телефона"
                       />
                     </div>
-                    <a
+                    <div
                       onClick={() => {
                         toDoOrder();
                       }}
                       type="submit"
-                      className="btn btn-primary"
+                      className="btn-order"
                     >
                       Заказать
-                    </a>
+                    </div>
                   </form>
                 </div>
                 {/* <!-- // Оформить заказ --> */}
