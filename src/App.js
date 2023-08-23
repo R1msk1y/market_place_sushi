@@ -80,7 +80,6 @@ function App() {
 
   const onSubmit = (data) => {
     if (cartArr.length > 0) {
-      alert(JSON.stringify(data));
       reset();
       setStatus(!status);
     }
