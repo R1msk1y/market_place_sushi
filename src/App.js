@@ -1,5 +1,6 @@
 import Card from "./components/Card/Card";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import "./context";
 import CartItem from "./components/CartItem/CartItem";
 import "./styles/main.scss";
@@ -67,13 +68,24 @@ function App() {
   const [status, setStatus] = useState(false);
   const toDoOrder = () => {
     setOrderArr([...cartArr, summ]);
-    setStatus(!status);
-    console.log(status);
+  };
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm({
+    mode: "onChange",
+  });
+
+  const onSubmit = (data) => {
+    if (cartArr.length > 0) {
+      alert(JSON.stringify(data));
+      reset();
+      setStatus(!status);
+    }
   };
 
-  // useEffect(() => {
-  //   axios.post("https://64dbcbc0593f57e435b16da2.mockapi.io/orders", orderArr);
-  // }, [primer]);
   return (
     <div classNameName="App">
       <header id="tr" className="header">
@@ -148,7 +160,7 @@ function App() {
                 </div>
 
                 {/* <!-- Оформить заказ --> */}
-                <div id="order-form" className="card-body border-top">
+                <div className="card-body border-top">
                   <button
                     onClick={() => {
                       totalPriceHandle();
@@ -157,24 +169,47 @@ function App() {
                   >
                     Посчитать полную стоимость
                   </button>
-                  <form>
-                    <div className="form-group">
-                      <input
-                        type="text"
-                        className="form-control"
-                        placeholder="Ваш номер телефона"
-                      />
+                  {status ? (
+                    <div>
+                      <h2>Спасибо!</h2>
+                      <p>Ваш заказ оформлен.</p>
+                      <img src="img/orderComplete.png" alt="Заказ оформлен" />
                     </div>
-                    <div
-                      onClick={() => {
-                        toDoOrder();
-                      }}
-                      type="submit"
-                      className="btn-order"
-                    >
-                      Заказать
-                    </div>
-                  </form>
+                  ) : (
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                      <div className="form-group">
+                        <input
+                          {...register("phoneNumber", {
+                            required:
+                              "Укажите свой номер, иначе мы не сможем с вами связаться",
+                            pattern: {
+                              value:
+                                /^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/,
+                              message:
+                                "Введите телефон в правильном формате, например '+79261234567'",
+                            },
+                          })}
+                          type="tel"
+                          className="form-control"
+                          placeholder="Ваш номер телефона"
+                        />
+                        {errors?.phoneNumber && (
+                          <p className="formErrorDescr">
+                            {errors?.phoneNumber?.message}
+                          </p>
+                        )}
+                      </div>
+                      <button
+                        onClick={() => {
+                          toDoOrder();
+                        }}
+                        type="submit"
+                        className="btn-order"
+                      >
+                        Заказать
+                      </button>
+                    </form>
+                  )}
                 </div>
                 {/* <!-- // Оформить заказ --> */}
               </div>
