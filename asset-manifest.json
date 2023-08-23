@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/market_place_sushi/static/css/main.d7d6c86e.css",
+    "main.js": "/market_place_sushi/static/js/main.d8fc02a0.js",
+    "static/js/787.de2e223a.chunk.js": "/market_place_sushi/static/js/787.de2e223a.chunk.js",
+    "index.html": "/market_place_sushi/index.html",
+    "main.d7d6c86e.css.map": "/market_place_sushi/static/css/main.d7d6c86e.css.map",
+    "main.d8fc02a0.js.map": "/market_place_sushi/static/js/main.d8fc02a0.js.map",
+    "787.de2e223a.chunk.js.map": "/market_place_sushi/static/js/787.de2e223a.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.d7d6c86e.css",
+    "static/js/main.d8fc02a0.js"
+  ]
+}
